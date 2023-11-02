@@ -5,6 +5,7 @@ import { useMediaQuery } from "useHooks-ts";
 
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { UserItem } from "./user-item";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -92,6 +93,18 @@ export const Navigation = () => {
     }
   };
 
+  const handleMouseEnter = () => {
+    // Show the tooltip when the mouse enters the GripVertical
+    const tooltip = document.querySelector(".tooltip") as HTMLElement;
+    tooltip.style.opacity = "1";
+  };
+
+  const handleMouseLeave = () => {
+    // Hide the tooltip when the mouse leaves the GripVertical
+    const tooltip = document.querySelector(".tooltip") as HTMLElement;
+    tooltip.style.opacity = "0";
+  };
+
   return (
     <>
       <aside
@@ -113,7 +126,7 @@ export const Navigation = () => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-          <p>Action items</p>
+          <UserItem />
         </div>
         <div className="mt-4">
           <p>Documents</p>
@@ -127,9 +140,18 @@ export const Navigation = () => {
         <span
           onMouseDown={handleMouseDown}
           onClick={resetWidth}
-          className="rounded-lg opacity-0 group-hover/sidebar:opacity-100 bg-primary/10 absolute top-[50%] right-2 flex items-center"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={cn(
+            "rounded-lg opacity-0 group-hover/sidebar:opacity-100 bg-primary/10 absolute text-muted-foreground top-[50%] right-2 flex items-center"
+          )}
         >
-          <GripVertical className="text-gray-600 w-6 h-9 cursor-grab" />
+          <GripVertical className="w-6 h-9 cursor-grab" />
+          <div className="tooltip absolute opacity-0 w-32 p-2 bg-black text-center rounded-lg right-1 top-12 font-semibold text-[10px] text-gray-600">
+            <span className="text-white text-[11px]">Drag</span> to resize
+            <br />
+            <span className="text-white text-[11px]">Tap</span> to Reset width
+          </div>
         </span>
       </aside>
       <div
