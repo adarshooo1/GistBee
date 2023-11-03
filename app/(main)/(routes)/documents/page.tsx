@@ -15,9 +15,9 @@ const DocumentPage = () => {
   const onCreate = () => {
     const promise = create({ title: "Untitled" });
     toast.promise(promise, {
-      loading: "Hold on Bee! Gist creating",
-      success: "Successfully Gist Created!",
-      error: "Whoops! Unable to create gist.",
+      loading: "Hold on Bee, Gist almost created!",
+      success: "Gist created successfully!",
+      error: "Whoops! Something went wrong!.",
     });
   };
 
