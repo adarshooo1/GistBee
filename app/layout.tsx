@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/providers/theme.provider";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -42,6 +43,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="gistbee-them-001"
           >
+            <Toaster position="top-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
