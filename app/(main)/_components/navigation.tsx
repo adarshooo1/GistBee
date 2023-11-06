@@ -4,6 +4,7 @@ import {
   ChevronsLeft,
   GripVertical,
   MenuIcon,
+  Plus,
   PlusCircle,
   Search,
   Settings,
@@ -62,7 +63,7 @@ export const Navigation = () => {
     let newWidth = event.clientX;
 
     // if (newWidth > 0) newWidth = 0;
-    if (newWidth < 150) newWidth = 150;
+    if (newWidth < 200) newWidth = 200;
     if (newWidth > 480) newWidth = 480;
 
     if (sidebarRef.current && navbarRef.current) {
@@ -108,18 +109,6 @@ export const Navigation = () => {
     }
   };
 
-  const handleMouseEnter = () => {
-    // Show the tooltip when the mouse enters the GripVertical
-    const tooltip = document.querySelector(".tooltip") as HTMLElement;
-    tooltip.style.opacity = "1";
-  };
-
-  const handleMouseLeave = () => {
-    // Hide the tooltip when the mouse leaves the GripVertical
-    const tooltip = document.querySelector(".tooltip") as HTMLElement;
-    tooltip.style.opacity = "0";
-  };
-
   const handleCreate = () => {
     const promise = create({ title: "Untitled" });
 
@@ -158,6 +147,7 @@ export const Navigation = () => {
         </div>
         <div className="mt-4">
           <DocumentList />
+          <Item onClick={handleCreate} icon={Plus} label="Add a gist" />
         </div>
         <div
           onMouseDown={handleMouseDown}
@@ -165,27 +155,11 @@ export const Navigation = () => {
           className="opacity-0 group-hover/sidebar:opacity-100 transition text-muted-foreground
           cursor-col-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
         />
-        <span
-          onMouseDown={handleMouseDown}
-          onClick={resetWidth}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className={cn(
-            "rounded-lg opacity-0 group-hover/sidebar:opacity-100 bg-primary/10 absolute text-muted-foreground top-[50%] right-2 flex items-center"
-          )}
-        >
-          <GripVertical className="w-6 h-9 cursor-grab" />
-          <div className="tooltip absolute opacity-0 w-32 p-2 bg-black text-center rounded-lg right-1 top-12 font-semibold text-[10px] text-gray-600">
-            <span className="text-white text-[11px]">Drag</span> to resize
-            <br />
-            <span className="text-white text-[11px]">Tap</span> to Reset width
-          </div>
-        </span>
       </aside>
       <div
         ref={navbarRef}
         className={cn(
-          "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          "absolute top-0 z-[99999] left-60 w-[calc(100%-200px)]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "left-0 w-full"
         )}

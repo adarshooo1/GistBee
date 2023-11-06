@@ -68,7 +68,7 @@ export const DocumentList = ({
         )}
       >
         <div className="flex items-center justify-between px-4">
-          <span className="truncate">create new gist</span>{" "}
+          <span className="truncate">no gist inside</span>{" "}
           <span>
             <PackageOpen className="w-4 h-4" />
           </span>
