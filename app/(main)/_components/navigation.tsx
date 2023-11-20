@@ -8,6 +8,7 @@ import {
   PlusCircle,
   Search,
   Settings,
+  Trash
 } from "lucide-react";
 import { useMediaQuery } from "useHooks-ts";
 
@@ -21,6 +22,12 @@ import { Item } from "./item";
 import { toast } from "sonner";
 import { DocumentList } from "./document-list";
 
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import { TrashBox } from "./trash-box";
 export const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -149,6 +156,17 @@ export const Navigation = () => {
           <DocumentList />
           <Item onClick={handleCreate} icon={Plus} label="Add a gist" />
         </div>
+        <Popover>
+          <PopoverTrigger className="w-full mt-4">
+            <Item label="trash" icon={Trash} />
+          </PopoverTrigger>
+          <PopoverContent
+            className="p-0 w-72"
+            side={isMobile ? "bottom" : "right"}
+          >
+            <TrashBox />
+          </PopoverContent>
+        </Popover>
         <div
           onMouseDown={handleMouseDown}
           onClick={resetWidth}
