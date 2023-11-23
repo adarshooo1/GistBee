@@ -2,7 +2,6 @@
 import React, { ElementRef, useRef, useState, useEffect } from "react";
 import {
   ChevronsLeft,
-  GripVertical,
   MenuIcon,
   Plus,
   PlusCircle,
@@ -21,8 +20,8 @@ import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import { toast } from "sonner";
 import { DocumentList } from "./document-list";
-
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 import {
   Popover,
@@ -31,6 +30,7 @@ import {
 } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
 export const Navigation = () => {
+  const settings = useSettings();
   const search = useSearch();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -42,7 +42,6 @@ export const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
   const create = useMutation(api.documents.create);
-
   useEffect(() => {
     if (isMobile) {
       collapse();
@@ -151,13 +150,8 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          <Item
-            label="Search"
-            icon={Search}
-            isSearch
-            onClick={search.onOpen}
-          />
-          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
+          <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
           <Item onClick={handleCreate} label="New Gist" icon={PlusCircle} />
         </div>
         <div className="mt-4">

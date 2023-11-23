@@ -66,9 +66,6 @@ export const Item = ({
   };
 
   const { user } = useUser();
-
-  const router = useRouter();
-
   const handleExpand = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation();
     onExpand?.();
@@ -82,7 +79,6 @@ export const Item = ({
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
       }
     );
     toast.promise(promise, {

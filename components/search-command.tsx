@@ -7,15 +7,12 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
 
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 
 import { useSearch } from "@/hooks/use-search";
@@ -57,9 +54,7 @@ export const SearchCommand = () => {
 
   return (
     <CommandDialog open={isOpen} onOpenChange={onClose}>
-      <CommandInput
-        placeholder={`Search in ${user?.firstName}'s gist...`}
-      />
+      <CommandInput placeholder={`Search in ${user?.firstName}'s gist...`} />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Documents">
