@@ -9,7 +9,7 @@ import {
   Settings,
   Trash,
 } from "lucide-react";
-import { useMediaQuery } from "useHooks-ts";
+import { useMediaQuery } from "usehooks-ts";
 import { usePathname, useParams, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { UserItem } from "./user-item";
