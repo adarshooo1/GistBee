@@ -10,7 +10,7 @@ import {
   Trash,
 } from "lucide-react";
 import { useMediaQuery } from "useHooks-ts";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { UserItem } from "./user-item";
 
@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
 export const Navigation = () => {
+  const router = useRouter();
   const settings = useSettings();
   const search = useSearch();
   const params = useParams();
@@ -120,7 +121,9 @@ export const Navigation = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" }).then((documentId) =>
+      router.push(`/documents/${documentId}`)
+    );
 
     toast.promise(promise, {
       loading: "Hold on Bee, Gist almost created!",
