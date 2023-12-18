@@ -23,7 +23,6 @@ export const SearchCommand = () => {
   const router = useRouter();
   const documents = useQuery(api.documents.getSearch);
   const [isMounted, setIsMounted] = useState(false);
-
   const toggle = useSearch((store) => store.toggle);
   const isOpen = useSearch((store) => store.isOpen);
   const onClose = useSearch((store) => store.onClose);
@@ -44,7 +43,8 @@ export const SearchCommand = () => {
   }, [toggle]);
 
   const onSelect = (id: string) => {
-    router.push(`/documents/${id}`);
+    const [documentId, title] = id.split("-");
+    router.push(`/documents/${documentId}`);
     onClose();
   };
 
@@ -61,7 +61,7 @@ export const SearchCommand = () => {
           {documents?.map((document) => (
             <CommandItem
               key={document._id}
-              value={`${document._id}- ${document.title}`}
+              value={`${document._id}-${document.title}`}
               title={document.title}
               onSelect={onSelect}
             >
